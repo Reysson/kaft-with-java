@@ -11,11 +11,9 @@ import java.util.UUID;
 
 public class KafkaService {
     private final KafkaConsumer<String, String> consumer;
-    private String groupId;
     private final ConsumerFunction parse;
 
     public KafkaService(String groupId,String topic, ConsumerFunction parse) {
-        this.groupId = groupId;
         this.parse = parse;
         this.consumer = new KafkaConsumer<String,String>(properties(groupId));
         consumer.subscribe(Collections.singletonList(topic));
